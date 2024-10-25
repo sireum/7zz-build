@@ -1,0 +1,38 @@
+name: Build
+
+on:
+  push:
+
+env:
+  P7ZIP_V: '24.08'
+  COSMOCC_V: '3.9.4'
+
+jobs:
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build
+        run: |
+          sudo sh -c 'echo -1 > /proc/sys/fs/binfmt_misc/cli'
+          sudo sh -c 'echo -1 > /proc/sys/fs/binfmt_misc/status'
+          bash build.sh
+      - name: Upload
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_name: sireum/rolling
+          repo_token: ${{ secrets.RELEASE_TOKEN }}
+          file: 7zz
+          asset_name: 7zz-${{ env.P7ZIP_V }}-cosmo-${{ env.COSMOCC_V }}
+          tag: misc
+          overwrite: true
+      - name: Upload
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_name: sireum/rolling
+          repo_token: ${{ secrets.RELEASE_TOKEN }}
+          file: 7zip/DOC/License.txt
+          asset_name: 7zz-${{ env.P7ZIP_V }}-cosmo-${{ env.COSMOCC_V }}-license.txt
+          tag: misc
+          overwrite: true
