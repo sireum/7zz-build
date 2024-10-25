@@ -15,8 +15,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Build
         run: |
-          sudo sh -c 'echo -1 > /proc/sys/fs/binfmt_misc/cli'
-          sudo sh -c 'echo -1 > /proc/sys/fs/binfmt_misc/status'
           bash build.sh
       - name: Upload
         uses: svenstaro/upload-release-action@v2
@@ -24,7 +22,7 @@ jobs:
           repo_name: sireum/rolling
           repo_token: ${{ secrets.RELEASE_TOKEN }}
           file: 7zz
-          asset_name: 7zz-${{ env.P7ZIP_V }}-cosmo-${{ env.COSMOCC_V }}
+          asset_name: 7zz-${{ env.P7ZIP_V }}-cosmo-${{ env.COSMOCC_V }}.com
           tag: misc
           overwrite: true
       - name: Upload

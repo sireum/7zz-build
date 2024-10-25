@@ -1,8 +1,10 @@
+sudo sh -c 'echo -1 > /proc/sys/fs/binfmt_misc/cli'
+sudo sh -c 'echo -1 > /proc/sys/fs/binfmt_misc/status'
 rm -fR cosmocc* 7zip
-curl -JLO https://github.com/jart/cosmopolitan/releases/download/$COSMOCC_V/cosmocc-$COSMOCC_V.zip
+curl -JLOs https://github.com/jart/cosmopolitan/releases/download/$COSMOCC_V/cosmocc-$COSMOCC_V.zip
 mkdir cosmocc
 cd cosmocc
-unzip ../cosmocc-$COSMOCC_V.zip
+unzip -qq ../cosmocc-$COSMOCC_V.zip
 cd bin
 ln -s cosmocc cc
 ln -s cosmoc++ c++
