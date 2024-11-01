@@ -5,7 +5,7 @@ on:
 
 env:
   P7ZIP_V: '24.08'
-  COSMOCC_V: '3.9.4'
+  COSMOCC_V: '3.9.6'
 
 jobs:
   ubuntu:
